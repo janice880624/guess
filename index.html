@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Play GIF on Button Click</title>
+<style>
+  body {
+    text-align: center; /* 確保包括按鈕在內的所有內容都居中 */
+  }
+  .image-container {
+    /* 圖片容器現在不需要指定文本對齊方式了，因為body已經處理了居中對齊 */
+    margin-top: 20px;
+  }
+  .play-button {
+    font-size: 20px; /* 增大字體大小 */
+    cursor: pointer; /* 滑鼠懸停時顯示指標樣式 */
+    margin: 20px 0; /* 增加上下邊距 */
+  }
+  img {
+    display: block; /* 確保圖片以block形式顯示，以支持自動邊距 */
+    margin: auto; /* 自動邊距確保居中 */
+    max-width: 20%; /* 控制最大寬度 */
+    height: auto; /* 高度自動 */
+  }
+  #gifAnimation, #placeholder {
+    max-width: 20%; /* 確保GIF和最後的圖片有相同的最大寬度 */
+  }
+</style>
+</head>
+<body>
+
+<div class="image-container">
+  <!-- 預覽圖片，初始顯示 -->
+  <img id="preview" src="init.gif" alt="GIF Preview" style="max-width: 80%;">
+  <!-- GIF動畫，隱藏直到播放 -->
+  <img id="gifAnimation" src="process.gif" style="display:none;" alt="Animation">
+  <!-- 佔位圖片，隱藏直到GIF播放完畢 -->
+  <img id="placeholder" src="ans.png" style="display:none; max-width: 60%;" alt="Placeholder">
+</div>
+<!-- 播放動畫按鈕 -->
+<button class="play-button" onclick="playGIF()">擲筊</button>
+
+<script>
+function playGIF() {
+  const preview = document.getElementById('preview');
+  const gif = document.getElementById('gifAnimation');
+  const placeholder = document.getElementById('placeholder');
+  
+  // 隱藏預覽圖片，顯示GIF
+  preview.style.display = 'none';
+  gif.style.display = 'block';
+  placeholder.style.display = 'none';
+
+  // 設置計時器根據GIF的播放時間，在播放結束後顯示佔位圖片
+  setTimeout(function() {
+    gif.style.display = 'none';
+    placeholder.style.display = 'block';
+  }, 2800); // 根據實際GIF播放時間調整
+}
+</script>
+
+</body>
+</html>
+
